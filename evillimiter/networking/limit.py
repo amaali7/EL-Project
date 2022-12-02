@@ -142,7 +142,7 @@ class Limiter(object):
         """
         Deletes iptables rules for a given ID (host)
         """
-        if (direction & Direction.OUTGOING) == Direction.OUTGOING:
+        if (direction & Direction.OUTGOING) == Direction.OUTGOING:
             shell.execute_suppressed('{} -t mangle -D POSTROUTING -s {} -j MARK --set-mark {}'.format(BIN_IPTABLES, host.ip, id_))
             shell.execute_suppressed('{} -t filter -D FORWARD -s {} -j DROP'.format(BIN_IPTABLES, host.ip))
         if (direction & Direction.INCOMING) == Direction.INCOMING:
