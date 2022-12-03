@@ -42,7 +42,7 @@ class CommandMenu(object):
                     self._state_ = 1
                 elif self._state_ == 1:
                     if self.daemon == 'limit':
-                        command = f"limit all {self.limit_to}kbit"
+                        command = f"limit all {str(self.limit_to)}kbit"
                     elif self.daemon == 'block':
                         command = "block all"
                     self._state_ = 0
