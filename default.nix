@@ -3,8 +3,8 @@ let
   src_r = pkgs.fetchFromGitHub rec {
     owner = "amaali7";
     repo = "EL-Project";
-    rev = "86b8106db768a116d4d5fcaa97fac9e6f20e3075";
-    sha256 = "0wdzk9yhpnmrgi5panavny7d77fv1890gm437a58j5g1q6jj6jd7";
+    rev = "c3f7688e687635971429fe0969529e8df8fb1b56";
+    sha256 = "03vy5drqhx5ndabws1vm4w47r1nfwhkmlfl0jvh6yvfvz5q7172j";
   };
 in pkgs.python310Packages.buildPythonApplication rec {
   pname = "evillimiter";
