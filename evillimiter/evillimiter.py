@@ -119,16 +119,20 @@ def process_arguments(args):
         netutils.flush_network_settings(interface)
         IO.spacer()
         IO.ok('flushed network settings')
-
-    if args.daemon_type:
-        demon_type = args.daemon_type
-
-    if args.limit_to:
+    daemon_type = None
+    if args.daemon_type is None:
+        daemon_type = 'block'
+    else:
+        daemon_type = args.daemon_type
+    limit_to = None
+    if args.limit_to is None:
+        limit_to = 20
+    else:
         try:
             limit_to = int(args.limit_to)
         except ValueError:
             print(f'Speed : {args.limit_to} is not Integer')
-    return InitialArguments(interface=interface, gateway_ip=gateway_ip, gateway_mac=gateway_mac, netmask=netmask, daemon_type=demon_type, limit_to=limit_to)
+    return InitialArguments(interface=interface, gateway_ip=gateway_ip, gateway_mac=gateway_mac, netmask=netmask, daemon_type=daemon_type, limit_to=limit_to)
 
 
 def initialize(interface):
@@ -185,10 +189,12 @@ def run():
         if args.daemon_type == 'block':
             menu.daemon = 'block'
         elif args.daemon_type is 'limit':
+
+            menu.daemon = 'limit'
             if args.limit_to:
                 menu.limit_to = args.limit_to
             else:
-                menu.limit_to = 50
+                menu.limit_to = 20
         menu.start()
         cleanup(args.interface)
 

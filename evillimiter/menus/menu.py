@@ -41,9 +41,9 @@ class CommandMenu(object):
                     command = "scan"
                     self._state_ = 1
                 elif self._state_ == 1:
-                    if self.daemon is 'limit':
+                    if self.daemon == 'limit':
                         command = f"limit all {self.limit_to}kbit"
-                    elif self.daemon is 'block':
+                    elif self.daemon == 'block':
                         command = "block all"
                     self._state_ = 0
             except KeyboardInterrupt:
